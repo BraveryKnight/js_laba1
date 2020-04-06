@@ -22,7 +22,8 @@ function arrSum(arr)
 function countMark(arr)
 {
     let count = [0,0,0,0,0,0,0];
-    arr.forEach((item,index) => {count[index%7]+=Number(item)});
+    arr.forEach((item,index) => {count[parseInt(index/5)]+=Number(item)});
+    console.log(count);
     return arrSum(count) - findMinMax(count);
 }
 
