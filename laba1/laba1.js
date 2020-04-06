@@ -25,8 +25,7 @@ function count_mark(arr)
     let count = [0,0,0,0,0,0,0];
     let new_arr = arr.slice(1,arr.length + 1);
     new_arr.forEach((item,index) => {count[index%7]+=Number(item)});
-    count.forEach((item,index,array) => {array[index]/=5});
-    return (arr_sum(count) - find_minmax(count))/5;
+    return arr_sum(count) - find_minmax(count);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
