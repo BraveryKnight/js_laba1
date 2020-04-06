@@ -1,6 +1,6 @@
 "use strict";
 
-function find_minmax(arr)
+function findMinMax(arr)
 {
     let min = arr[0],max = arr[0];
     arr.forEach((item) =>
@@ -13,30 +13,29 @@ function find_minmax(arr)
     return min+max;
 }
 
-function arr_sum(arr)
+function arrSum(arr)
 {
-    let sum = 0;
-    arr.forEach((item) => {sum+=item;});
-    return sum;
+    let reducer = (item, value) => item + value;
+    return arr.reduce(reducer);
 }
 
-function count_mark(arr)
+function countMark(arr)
 {
     let count = [0,0,0,0,0,0,0];
-    let new_arr = arr.slice(1,arr.length + 1);
-    new_arr.forEach((item,index) => {count[index%7]+=Number(item)});
-    return arr_sum(count) - find_minmax(count);
+    arr.forEach((item,index) => {count[index%7]+=Number(item)});
+    return arrSum(count) - findMinMax(count);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
     let mark = -6;
     let name = "";
     do{
-        let arr = prompt("Введите нового участника").split(',');
-        if (mark < count_mark(arr))
+        let [tmpName,...arr] = prompt("Введите нового участника").split(',');
+        let item = countMark(arr);
+        if (mark < item)
         {
-            name = arr[0];
-            mark = count_mark(arr);
+            name = tmpName;
+            mark = item;
         }
     } while(confirm("Продолжить"));
     alert(name);
